@@ -1,0 +1,30 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+#theme-options {
+    display: none;
+}
+
+/* Estilos para el tema claro */
+body.light {
+    background-color: #888888b9;
+    color: #504b4b71;
+}
+
+/* Estilos para el tema oscuro */
+body.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Estilos para el botón desplegable */
+.dropdown-menu {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}

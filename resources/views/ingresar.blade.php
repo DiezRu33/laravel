@@ -1,6 +1,19 @@
 <?php 
 
-    use Illuminate\Support\Facades\Storage;
+    $usuarios = (array) [];
+    $input = (string) "";
+
+    if ( strlen($input) >= 2 ){
+
+            foreach( $usuarios as $usuario){
+                if ( count($usuarios) >= 1)
+                    array_push($usuarios, $input);  
+                    echo "Los usuarios registrados son:\n";
+                    echo $usuario;
+                    "<br></br>";
+        }  
+    }
+    
 ?> 
 
 <!DOCTYPE html>
@@ -14,14 +27,13 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="styles.css">
 
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="js/script.js"></script>
     </head>
 
 
-<body class=" light antialiased bg-gray-900">
+<body class="antialiased bg-gray-900">
 
 <!-- Bloque de busqueda -->
 <div class="flex items-center justify-center mt-1 bg-gray-800 rounded-xl">
@@ -105,7 +117,6 @@
                 </button>
             </div>
         </div>
-        
 
     </div>
 </div>
@@ -116,64 +127,48 @@
 
     <div class="flex items-center justify-center bg-gray-500 mt-2 bg-gray-600 rounded-xl">
     <div class="max-w-xl bg-gray-400 p-4 rounded-xl shadow-lg flex space-x-8 m-4">
-    <form method="POST" action="php/procesar-registro.php">
-        <label class="block">
+        <form method="POST" action="public/validar-acceso.php">
+            <label class="block">
 
-            <!-- Usuario -->
-            <label for="usuario" class="block text-sm font-medium text-slate-700 ">Usuario</label>
+            <!-- Email -->
+            <label class="block">
+            <label class="block text-sm font-medium text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500" for="email">Email</label>
+                <input type="email" 
+                    placeholder="Correo electrónico" 
+                    class="peer mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 hover:text-black text-gray-300 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 invalid-input:invalid :invalid-pink-400"
+                    name="email"
+                    />
 
-            <input type="text" 
-                placeholder="Crea tu usuario" 
-                class="peer mt-1 w-full px-3 py-2 text-gray-300 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 hover:text-black focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
-                name="usuario"
+                <p class="invisible peer-invalid:visible text-pink-600 text-sm">
+                    Escribí bien gil de goma.
+                </p>
+            </label>
+
+            <!-- Contraseña -->
+            <label class="block">
+                <label class="block text-sm font-medium text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500" 
+                    for="contraseña">Contraseña</label>
+
+                <input type="password" 
+                    placeholder="Contraseña weon" 
+                    class="peer bg-gray-400 mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+                invalid:border-pink-500 invalid:text-pink-600
+                focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                name="contraseña"
                 />
+                <p class="invisible peer-invalid:visible text-pink-600 text-sm">
+                    Dale boludo.
+                </p>
+            </label>
 
-            <p class="invisible peer-invalid:visible text-pink-600 text-sm">
-                Escribí bien gil de goma.
-            </p>
-        </label>
-
-        <!-- Email -->
-        <label class="block">
-        <label class="block text-sm font-medium text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500" for="email">Email</label>
-            <input type="email" 
-                placeholder="Correo electrónico" 
-                class="peer mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 hover:text-black text-gray-300 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 invalid-input:invalid :invalid-pink-400"
-                name="email"
-                />
-
-            <p class="invisible peer-invalid:visible text-pink-600 text-sm">
-                Escribí bien gil de goma.
-            </p>
-        </label>
-
-
-        <!-- Contraseña -->
-        <label class="block">
-            <label class="block text-sm font-medium text-slate-700 after:content-['*'] after:ml-0.5 after:text-red-500" for="contraseña">Contraseña</label>
-
-            <input type="password" 
-                placeholder="Contraseña weon" 
-                class="peer bg-gray-400 mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-            focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-            disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-            invalid:border-pink-500 invalid:text-pink-600
-            focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
-            name="contraseña"
-            />
-            <p class="invisible peer-invalid:visible text-pink-600 text-sm">
-                Dale boludo.
-            </p>
-        </label>
-
-        <div class="flex items-center justify-center mt-2">
-            <button class="bg-gray-900 text-white p-3 rounded-xl shadow-lg hover:bg-gray-800" type="submit" value="Registrar">
-                    REGISTRARSE!
-            </button>
-        </div>
-</form>
-
-
+            <div class="flex items-center justify-center mt-2">
+                <button class="bg-gray-900 text-white p-3 rounded-xl shadow-lg hover:bg-gray-800" type="submit" value="Registrar">
+                        REGISTRARSE!
+                </button>
+            </div>
+    </form>
 
     </div>
     </div>
